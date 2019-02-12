@@ -16,12 +16,16 @@ import com.github.yu_jay.jay_common.iter.ILogger;
 public class App implements IStartup {
 	
 	private Logger log = Logger.getLogger(App.class);
+	
+	static {
+		String logPath = "G:/Template/log4j.properties";
+        ILogger logger = new Log4jLogger(logPath);
+	}
 
 	@Override
 	public void earlyStartup() {
 		
-		String logPath = "/home/jayu/logs/log4j.properties";
-        ILogger logger = new Log4jLogger(logPath);
+		
 		
 		String code = Charset.defaultCharset().name();
 		System.out.println("----code---: " + code);

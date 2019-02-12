@@ -7,9 +7,7 @@ Bundle-Vendor: jayu
 Require-Bundle: org.eclipse.ui
 Automatic-Module-Name: fileChangeListenInEclipse
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: com.github.yu_jay.fileChangeListenInEclipse,
- com.github.yu_jay.jay_common,
- org.apache.log4j
 Bundle-ClassPath: lib/jay-common-1.0.0.jar,
  lib/log4j-1.2.17.jar,
- bin/
+ bin/,
+ lib/
