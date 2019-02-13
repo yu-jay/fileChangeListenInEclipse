@@ -17,6 +17,7 @@ import com.github.yu_jay.fileChangeListenInEclipse.util.WorkPlace;
 import com.github.yu_jay.jay_compiler.act.FileChangeInfo;
 import com.github.yu_jay.jay_compiler.act.WebpackJsCompiler;
 import com.github.yu_jay.jay_compiler.pojo.FileChangeType;
+import com.github.yu_jay.jay_compiler.util.Judger;
 
 /**
  * 入口
@@ -40,33 +41,39 @@ public class App implements IStartup {
 		beforeEarlyStartup();
 		
 		/**
-		 * 注册核心监听事件
+		 * 判断webpack 配置是否正确，如果正确将注册核心监听事件
 		 */
-		JavaCore.addElementChangedListener(new IElementChangedListener() {
-			
-			@Override
-			public void elementChanged(ElementChangedEvent event) {
+		if(Judger.checkConfig(webpackJsCompiler.getConfig())) {
+			/**
+			 * 注册核心监听事件
+			 */
+			JavaCore.addElementChangedListener(new IElementChangedListener() {
 				
-				if(event != null && null != PlatformUI.getWorkbench().getActiveWorkbenchWindow()) {
-					FileChangeInfo info = convertByWindow(event);
-					if(null != info) {
-						log.info(info);
-						
-						/**
-						 * 执行一个js编译器
-						 */
-						if(Judger.haveConfig() 
-								&& Judger.checkProject(info)
-								&& Judger.mateContext(info)) {
-							webpackJsCompiler.compile(info);   //开始编译js文件
-						}else {
-							log.debug("配置不匹配，不进行编译");
+				@Override
+				public void elementChanged(ElementChangedEvent event) {
+					
+					if(event != null && null != PlatformUI.getWorkbench().getActiveWorkbenchWindow()) {
+						FileChangeInfo info = convertByWindow(event);
+						if(null != info) {
+							log.info(info);
+							
+							/**
+							 * 执行一个js编译器
+							 */
+							if(Judger.checkProject(webpackJsCompiler.getConfig(), info)
+									&& Judger.mateContext(webpackJsCompiler.getConfig(), info)) {
+								webpackJsCompiler.compile(info);   //开始编译js文件
+							}else {
+								log.debug("配置不匹配，不进行编译");
+							}
+							
 						}
-						
 					}
 				}
-			}
-		}, 1);
+			}, 1);
+		}else {
+			log.info("webpack配置文件不正确，无法绑定监听事件");
+		}
 		
 		afterEarlyStartup();
 		
