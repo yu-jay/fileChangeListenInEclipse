@@ -1,13 +1,7 @@
 package com.github.yu_jay.fileChangeListenInEclipse;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Enumeration;
-import java.util.Properties;
-
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.ui.IStartup;
 
 import com.github.yu_jay.jay_common.act.Log4jLogger;
