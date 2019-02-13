@@ -19,6 +19,7 @@ public class App implements IStartup {
 	public void earlyStartup() {
 		
 		String path = "G:/Template/log4j.properties";
+		path = "/home/jayu/logs/log4j.properties";
 		
 		Log4jLogger loggerConfiger = new Log4jLogger(path);
 		
