@@ -3,6 +3,7 @@
 <plugin>
    <extension
          point="org.eclipse.ui.startup">
+         <startup class="com.github.yu_jay.fileChangeListenInEclipse.App"></startup>
    </extension>
 
 
