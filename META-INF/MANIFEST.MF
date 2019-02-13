@@ -1,13 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: De
+Bundle-Name: fileChangeListenInEclipse
 Bundle-SymbolicName: jayu.fileChangeListenInEclipse;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: jayu
 Require-Bundle: org.eclipse.ui
-Automatic-Module-Name: de
+Automatic-Module-Name: fileChangeListenInEclipse
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .,
  bin/,
- lib/jay-common-1.0.0.jar,
- lib/log4j-1.2.17.jar
+ lib/log4j-1.2.17.jar,
+ lib/jay-common-1.0.0.jar
+Export-Package: com.github.yu_jay.jay_common,
+ org.apache.log4j
