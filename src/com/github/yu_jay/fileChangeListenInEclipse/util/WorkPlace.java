@@ -84,7 +84,12 @@ public class WorkPlace implements IWorkPalce {
 	}
 
 	@Override
-	public String getWebAbsoluteOutFile(DocumentOrganization arg0) {
+	public String getWebAbsoluteOutFile(DocumentOrganization doc) {
+		if(null != doc.getWebOutPath() 
+				&& null != doc.getOutName()) {
+			return WORK_PLACE_PATH + ".metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/" + 
+					doc.getWebpackConfig().getRecentProjectName() + doc.getWebOutPath() + doc.getOutName();
+		}
 		return null;
 	}
 	

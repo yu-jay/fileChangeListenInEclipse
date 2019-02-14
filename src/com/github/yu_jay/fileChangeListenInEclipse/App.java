@@ -71,6 +71,7 @@ public class App implements IStartup {
 					}
 				}
 			}, 1);
+			log.info("----success----监听文件变化的事件绑定成功，webpack编译器准备就绪");
 		}else {
 			log.info("webpack配置文件不正确，无法绑定监听事件");
 		}
@@ -95,7 +96,7 @@ public class App implements IStartup {
 		if(null != configPath) {
 			webpackJsCompiler.init(configPath);
 		}else {
-			log.debug("configPath: " + configPath);
+			log.debug("webpack config path: " + configPath);
 		}
 		log.debug("初始化编译器完成");
 		log.debug("结束执行:beforeEarlyStartup");
